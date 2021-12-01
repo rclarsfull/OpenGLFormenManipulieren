@@ -5,6 +5,14 @@
 #include <SDL.h>
 #include "Defines.h"
 #include "VertexBuffer.h"
+#include "Pyramiede.h"
+
+#include <windows.h>
+#include <fstream>
+
+
+#include <chrono>
+#include <thread>
 
 #pragma comment(lib,"SDL2.lib")
 #pragma comment(lib,"glew32s.lib")
@@ -38,14 +46,16 @@ int main(int argc, char** arbv) {
 	std::cout << "OpenGl Version: " << glGetString(GL_VERSION) << "\n";
 
 	Vertex verticies[] = {    
-		Vertex {-0.5f ,-0.5f, 0.0f}, 
-		Vertex {0.0f, 0.5f, 0.0f},
-		Vertex {0.5f, -0.5f, 0.0f}
+		Vertex (- 0.5f ,-0.8f, 0.0f),
+		Vertex (0.0f, 0.5f, 0.0f),
+		Vertex (0.5f, -0.5f, 0.0f)
 	};
 	uint32_t numVertices = 3; //Die länge des arrays mitführen weil c keine länge von arrays speichert.
 
 	VertexBuffer vertexBuffer(verticies, numVertices);
 	vertexBuffer.unbind();
+
+	Pyramiede pyramiede(Vertex(-0.3f, -0.3f, 0.3f), Vertex(0.3f, -0.3f, -0.3f), Vertex(0.0f, -0.3f, -0.3f), Vertex(0.0f, 0.3f, 0.0f));
 
 	
 	bool close = false;
@@ -56,8 +66,25 @@ int main(int argc, char** arbv) {
 		//Zeichenbereich
 
 		//vertexBuffer.bind();
-		glDrawArrays(GL_TRIANGLES, 0, numVertices);
+		//glDrawArrays(GL_TRIANGLES, 0, numVertices);
 		//vertexBuffer.unbind();
+
+		if (GetKeyState(VK_UP) & 0x80)
+		{
+			pyramiede.skalieren(1.01f);
+		}
+		if (GetKeyState(VK_DOWN) & 0x80)
+		{
+			pyramiede.skalieren(0.99f);
+		}
+
+		pyramiede.draw();
+		
+		
+		
+		//std::this_thread::sleep_for(std::chrono::milliseconds(800));
+		//pyramiede.drehen(1);
+
 	
 
 

@@ -26,5 +26,8 @@
     <ClInclude Include="Defines.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Pyramiede.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

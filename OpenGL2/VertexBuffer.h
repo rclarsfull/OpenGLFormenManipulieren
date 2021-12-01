@@ -9,7 +9,7 @@ struct VertexBuffer {
 
 		glGenBuffers(1, &bufferId); // Erzeugt genau 1 Buffer auf der Gpu, die adresse wird in vertex buffer geschrieben
 		glBindBuffer(GL_ARRAY_BUFFER, bufferId); //Buffer Binden und den typ übergeben (Auswählen von dem zu benutzenden buffer
-		std::cout << "GPU Buffer erzeugt mit der ID: " << bufferId << "\n";
+		//std::cout << "GPU Buffer erzeugt mit der ID: " << bufferId << "\n";
 		glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * numVertices, data, GL_STATIC_DRAW);
 
 		glEnableVertexAttribArray(0); //Datenstrucktur an openGL übermitteln 0 weil nur 1 attribut (Vertex)
