@@ -69,21 +69,46 @@ int main(int argc, char** arbv) {
 		//glDrawArrays(GL_TRIANGLES, 0, numVertices);
 		//vertexBuffer.unbind();
 
-		if (GetKeyState(VK_UP) & 0x80)
+		if (GetKeyState(VK_NUMPAD8) & 0x80)
 		{
 			pyramiede.skalieren(1.01f);
 		}
-		if (GetKeyState(VK_DOWN) & 0x80)
+		if (GetKeyState(VK_NUMPAD2) & 0x80)
 		{
 			pyramiede.skalieren(0.99f);
+		}
+
+		if (GetKeyState(VK_NUMPAD4) & 0x80)
+		{
+			pyramiede.drehen(-0.01f);
+		}
+		if (GetKeyState(VK_NUMPAD6) & 0x80)
+		{
+			pyramiede.drehen(0.01f);
+		}
+
+		if (GetKeyState(VK_UP) & 0x80)
+		{
+			pyramiede.verschieben(0,0.01f,0);
+		}
+		if (GetKeyState(VK_DOWN) & 0x80)
+		{
+			pyramiede.verschieben(0, -0.01f, 0);
+		}
+		if (GetKeyState(VK_RIGHT) & 0x80)
+		{
+			pyramiede.verschieben(0.01f, 0, 0);
+		}
+		if (GetKeyState(VK_LEFT) & 0x80)
+		{
+			pyramiede.verschieben(-0.01f, 0, 0);
 		}
 
 		pyramiede.draw();
 		
 		
 		
-		//std::this_thread::sleep_for(std::chrono::milliseconds(800));
-		//pyramiede.drehen(1);
+		
 
 	
 

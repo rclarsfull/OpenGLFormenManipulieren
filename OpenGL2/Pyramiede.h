@@ -58,30 +58,49 @@ public:
 		seite3Vertex.unbind();
 	}
 
-	void drehen (int gradZ) {
-		a.setX(a.getX() * cos(gradZ) + a.getY()* sin(gradZ));
-		a.setY(-a.getX() * sin(gradZ) + a.getY() * cos(gradZ));
-		b.setX(b.getX() * cos(gradZ) + b.getY() * sin(gradZ));
-		b.setY(-b.getX() * sin(gradZ) + b.getY() * cos(gradZ));
-		c.setX(c.getX() * cos(gradZ) + c.getY() * sin(gradZ));
-		c.setY(-c.getX() * sin(gradZ) + c.getY() * cos(gradZ));
+	void drehen (float gradY) {
+
+		float x, y, z;
+		
+		//point a
+		x = a.getX();
+		y = a.getY();
+		z = a.getZ();
+		a.setX(x * cos(gradY) + z * sin(gradY));
+		a.setZ(z * cos(gradY) + x * -sin(gradY));
+
+
+        //point b
+		x = b.getX();
+		y = b.getY();
+		z = b.getZ();
+		b.setX(x * cos(gradY) + z * sin(gradY));
+		b.setZ(z * cos(gradY) + x * -sin(gradY));
+
+		//point c
+		x = c.getX();
+		y = c.getY();
+		z = c.getZ();
+		c.setX(x * cos(gradY) + z * sin(gradY));
+		c.setZ(z * cos(gradY) + x * -sin(gradY));
+
+		//point s
+		x = s.getX();
+		y = s.getY();
+		z = s.getZ();
+		s.setX(x * cos(gradY) + z * sin(gradY));
+		s.setZ(z * cos(gradY) + x * -sin(gradY));
+
+
+		std::cout << "x:" << a.getX() << "\ty: " << a.getZ() << "\n";
 		init();
 	}
 
-	bool skalieren(float x) {
-//		if (a.getX() * x <= 1.0f && a.getX() * x >= 0.0f &&
-//			a.getY() * x <= 1.0f && a.getY() * x >= 0.0f &&
-//			a.getZ() * x <= 1.0f && a.getZ() * x >= 0.0f &&
-//			b.getX() * x <= 1.0f && b.getX() * x >= 0.0f &&
-//			b.getY() * x <= 1.0f && b.getY() * x >= 0.0f &&
-//			b.getZ() * x <= 1.0f && b.getZ() * x >= 0.0f &&
-//			c.getX() * x <= 1.0f && c.getX() * x >= 0.0f &&
-//			c.getY() * x <= 1.0f && c.getY() * x >= 0.0f &&
-//			c.getZ() * x <= 1.0f && c.getZ() * x >= 0.0f &&
-//			s.getX() * x <= 1.0f && s.getX() * x >= 0.0f &&
-//			s.getY() * x <= 1.0f && s.getY() * x >= 0.0f &&
-//			s.getZ() * x <= 1.0f && s.getZ() * x >= 0.0f) {
 
+	//c.setX(c.getX()* cos(gradY) + c.getY() * -sin(gradY));
+	//c.setY(c.getX()* sin(gradY) + c.getY() * cos(gradY));
+
+	void skalieren(float x) {
 			a.setX(a.getX() * x);
 			a.setY(a.getY() * x);
 			a.setZ(a.getZ() * x);
@@ -98,8 +117,27 @@ public:
 			s.setY(s.getY() * x);
 			s.setZ(s.getZ() * x);
 			init();
-			return true;
-//		}
-//		return false;
 	}
+
+
+	void verschieben(float x, float y, float z) {
+		a.setX(a.getX() + x);
+		a.setY(a.getY() + y);
+		a.setZ(a.getZ() + z);
+
+		b.setX(b.getX() + x);
+		b.setY(b.getY() + y);
+		b.setZ(b.getZ() + z);
+
+		c.setX(c.getX() + x);
+		c.setY(c.getY() + y);
+		c.setZ(c.getZ() + z);
+
+		s.setX(s.getX() + x);
+		s.setY(s.getY() + y);
+		s.setZ(s.getZ() + z);
+		init();
+	}
+
+
 };
